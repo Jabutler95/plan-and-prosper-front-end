@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // pages
@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import MonthlySheetList from './pages/MonthlySheetList/MonthlySheetList'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -15,12 +16,14 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+import * as monthlySheetService from './services/monthlySheetService'
 
 // styles
 import './App.css'
 
 function App() {
   const [user, setUser] = useState(authService.getUser())
+  const [monthlySheets, setMonthlySheets] = useState([])
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -32,6 +35,15 @@ function App() {
   const handleAuthEvt = () => {
     setUser(authService.getUser())
   }
+
+  useEffect(() =>{
+    const fetchAllMonthlySheets = async () => {
+      const data = await monthlySheetService.index()
+      setMonthlySheets(data)
+      console.log('Monthly Sheet Data:', data) 
+    }
+    if (user) fetchAllMonthlySheets()
+  }, [user])
 
   return (
     <>
@@ -62,6 +74,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route 
+          path='/monthly-sheets'
+          element={
+            <ProtectedRoute user={user}>
+              <MonthlySheetList />
+            </ProtectedRoute>
+          }
+        ></Route>
       </Routes>
     </>
   )
