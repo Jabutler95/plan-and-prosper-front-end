@@ -39,8 +39,7 @@ function App() {
   useEffect(() =>{
     const fetchAllMonthlySheets = async () => {
       const data = await monthlySheetService.index()
-      setMonthlySheets(data)
-      console.log('Monthly Sheet Data:', data) 
+      setMonthlySheets(data) 
     }
     if (user) fetchAllMonthlySheets()
   }, [user])
@@ -78,10 +77,10 @@ function App() {
           path='/monthly-sheets'
           element={
             <ProtectedRoute user={user}>
-              <MonthlySheetList />
+              <MonthlySheetList monthlySheets={monthlySheets}/>
             </ProtectedRoute>
           }
-        ></Route>
+        />
       </Routes>
     </>
   )
