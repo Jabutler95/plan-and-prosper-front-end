@@ -1,3 +1,6 @@
+// components 
+import MonthlySheetCard from '../../components/MonthlySheetCard/MonthlySheetCard.jsx';
+
 import styles from './MonthlySheetList.module.css'
 
 const MonthlySheetList = (props) => {
