@@ -1,6 +1,7 @@
 // components 
 import MonthlySheetCard from '../../components/MonthlySheetCard/MonthlySheetCard.jsx';
 
+// css 
 import styles from './MonthlySheetList.module.css'
 
 const MonthlySheetList = (props) => {
@@ -8,9 +9,7 @@ const MonthlySheetList = (props) => {
     <main className={styles.container}>
       {props.monthlySheets.length > 0 ? (
         props.monthlySheets.map(monthlySheet => (
-          <p key={monthlySheet._id}>
-            {monthlySheet.name}
-          </p>
+          <MonthlySheetCard key={monthlySheet._id} monthlySheet={monthlySheet} />
         ))
       ) : (
         <p>No monthly sheets available</p>

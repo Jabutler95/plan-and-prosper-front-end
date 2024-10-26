@@ -2,8 +2,8 @@
 import { Link } from 'react-router-dom'
 
 // components
-import Icon from '../Icon/Icon'
-import AuthorInfo from '../AuthorInfo/AuthorInfo'
+// import Icon from '../Icon/Icon'
+// import AuthorInfo from '../AuthorInfo/AuthorInfo'
 
 // css
 import styles from '../MonthlySheetCard/MonthlySheetCard.module.css'
@@ -15,9 +15,9 @@ const MonthlySheetCard = ({ sheet }) => {
         <header>
           <span>
             <h1>{sheet.name}</h1>
-            <Icon category={sheet.category} />
+            {/* <Icon category={sheet.category} /> */}
           </span>
-          <AuthorInfo content={sheet} />
+          {/* <AuthorInfo content={sheet} /> */}
         </header>
         <p>misc sheet info</p>
       </article>
